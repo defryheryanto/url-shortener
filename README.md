@@ -1,4 +1,4 @@
-# URL Shortener (On development)
+# URL Shortener
 This is application for shortening your URL. The generated URL from this application can be used to distributing an URL easier.
 
 ## Example
