@@ -8,11 +8,14 @@ import (
 	"os/signal"
 	"time"
 
+	"github.com/defryheryanto/url-shortener/config"
+	"github.com/defryheryanto/url-shortener/config/env"
 	"github.com/defryheryanto/url-shortener/internal/httpserver"
 	"github.com/defryheryanto/url-shortener/internal/logger"
 )
 
 func main() {
+	env.LoadEnv()
 
 	quit := make(chan os.Signal, 1)
 	signal.Notify(quit, os.Interrupt)
@@ -21,7 +24,7 @@ func main() {
 	go func() {
 		app := buildApp()
 		appserver = &http.Server{
-			Addr:    ":8080",
+			Addr:    fmt.Sprintf("%s:%s", config.HOST_URL(), config.HOST_PORT()),
 			Handler: httpserver.HandleRoutes(app),
 		}
 		logger.Print(fmt.Sprintf("Application Server listening on %s", appserver.Addr))
