@@ -2,9 +2,11 @@ package link
 
 import (
 	"encoding/json"
+	"fmt"
 	"io"
 	"net/http"
 
+	"github.com/defryheryanto/url-shortener/config"
 	"github.com/defryheryanto/url-shortener/internal/app"
 	"github.com/defryheryanto/url-shortener/internal/errors"
 	"github.com/defryheryanto/url-shortener/internal/httpserver/handler"
@@ -32,7 +34,9 @@ func Shorten(application *app.Application) http.HandlerFunc {
 		}
 
 		newLink := application.LinkService.CreateLink(p.Url)
-		response.WithData(w, http.StatusOK, newLink)
+		response.WithData(w, http.StatusOK, map[string]interface{}{
+			"shortened_link": fmt.Sprintf("http://%s:%s/%s", config.HOST_URL(), config.HOST_PORT(), newLink.Id),
+		})
 		return nil
 	})
 }
