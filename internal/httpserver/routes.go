@@ -12,7 +12,7 @@ func HandleRoutes(application *app.Application) http.Handler {
 	r := mux.NewRouter()
 
 	r.HandleFunc("/shorten", link.Shorten(application)).Methods(http.MethodPost)
-	// r.HandleFunc("/{id}", handler.GetURL).Methods(http.MethodGet)
+	r.HandleFunc("/{id}", link.GetURL(application)).Methods(http.MethodGet)
 
 	return r
 }

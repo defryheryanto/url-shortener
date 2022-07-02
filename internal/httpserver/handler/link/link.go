@@ -9,6 +9,7 @@ import (
 	"github.com/defryheryanto/url-shortener/internal/errors"
 	"github.com/defryheryanto/url-shortener/internal/httpserver/handler"
 	"github.com/defryheryanto/url-shortener/internal/httpserver/response"
+	"github.com/gorilla/mux"
 )
 
 func Shorten(application *app.Application) http.HandlerFunc {
@@ -32,6 +33,21 @@ func Shorten(application *app.Application) http.HandlerFunc {
 
 		newLink := application.LinkService.CreateLink(p.Url)
 		response.WithData(w, http.StatusOK, newLink)
+		return nil
+	})
+}
+
+func GetURL(application *app.Application) http.HandlerFunc {
+	return handler.Handle(func(w http.ResponseWriter, r *http.Request) error {
+		id := mux.Vars(r)["id"]
+
+		existingLink := application.LinkService.GetLink(id)
+		if existingLink == nil || existingLink.Url == "" {
+			return errors.NewNotFoundError("Link not found")
+		}
+
+		http.Redirect(w, r, existingLink.Url, http.StatusTemporaryRedirect)
+
 		return nil
 	})
 }
