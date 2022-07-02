@@ -1,0 +1,17 @@
+2022/07/03 03:02:45 03:02: Application Server listening on :8080
+2022/07/03 03:04:56 03:04: Application Server listening on :8080
+2022/07/03 03:05:13 03:05: error handle - please fill data -> E:/Documents/Other/Go Language/url-shortener/internal/logger/logger.go:15
+E:/Documents/Other/Go Language/url-shortener/internal/httpserver/handler/handler.go:18
+E:/Application/Go/src/net/http/server.go:2042
+C:/Users/Defry Heryanto/go/pkg/mod/github.com/gorilla/mux@v1.8.0/mux.go:210
+E:/Application/Go/src/net/http/server.go:2843
+E:/Application/Go/src/net/http/server.go:1925
+
+2022/07/03 03:05:17 03:05: error handle - invalid character '}' looking for beginning of object key string -> E:/Documents/Other/Go Language/url-shortener/internal/logger/logger.go:15
+E:/Documents/Other/Go Language/url-shortener/internal/httpserver/handler/handler.go:18
+E:/Application/Go/src/net/http/server.go:2042
+C:/Users/Defry Heryanto/go/pkg/mod/github.com/gorilla/mux@v1.8.0/mux.go:210
+E:/Application/Go/src/net/http/server.go:2843
+E:/Application/Go/src/net/http/server.go:1925
+
+2022/07/03 03:06:23 03:06: Application Server listening on :8080
