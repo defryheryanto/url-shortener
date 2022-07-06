@@ -16,12 +16,12 @@ func NewService(storage linkstorage.IService, idLength int) *LinkService {
 }
 
 func (s *LinkService) CreateLink(url string) *link.Link {
-	randomStringService := randomstring.NewService("abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ1234567890", s.idLength)
-	newUniqueId := randomStringService.GenerateRandomString()
+	randomStringService := randomstring.NewService("abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ1234567890")
+	newUniqueId := randomStringService.GenerateRandomString(s.idLength)
 	existingLink := s.storage.GetLinkByID(newUniqueId)
 
 	for existingLink != nil {
-		newUniqueId = randomStringService.GenerateRandomString()
+		newUniqueId = randomStringService.GenerateRandomString(s.idLength)
 		existingLink = s.storage.GetLinkByID(newUniqueId)
 	}
 
